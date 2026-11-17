@@ -1,9 +1,9 @@
 import { useRef } from "react"
 import { LuCircle, LuCircleCheck, LuTrash } from "react-icons/lu"
-import { deleteTodoById, updateStatus } from "../libs/todo"
+import { useTodos } from "../hooks/useTodos";
 
 /**
- * @typedef {import("../libs/todo").ToDo} TodoProps
+ * @typedef {import("../hooks/useTodos").ToDo} TodoProps
  */
 
 /**
@@ -13,16 +13,17 @@ import { deleteTodoById, updateStatus } from "../libs/todo"
  */
 function Todo(props) {
   const inputRef = useRef()
+  const todos = useTodos();
 
   function handleClick(e) {
     if (!inputRef.current)
       return
 
-    updateStatus(inputRef.current.value, e.currentTarget.checked)
+    todos.updateStatusById(inputRef.current.value, e.currentTarget.checked)
   }
 
   function handleDelete() {
-    deleteTodoById(props.id)
+    todos.deleteById(props.id)
   }
 
   return (

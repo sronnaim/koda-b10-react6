@@ -1,26 +1,15 @@
 import { LuPlus } from "react-icons/lu"
 import Todo from "./components/Todo"
-import { useRef, useSyncExternalStore } from "react"
+import { useRef } from "react"
 import NewDialog from "./components/NewDialog"
+import { useTodos } from "./hooks/useTodos";
 
 const WEEKDAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
-function subscribe(notify) {
-  window.addEventListener('storage', notify)
-
-  return () => window.removeEventListener('storage', notify)
-}
-
-function getList() {
-  const rawString = localStorage.getItem('todos')
-
-  return rawString
-}
 
 function App() {
-  const rawString = useSyncExternalStore(subscribe, getList, () => null)
-  const todos = JSON.parse(rawString)
+  const todos = useTodos().getAll()
 
   const newDialogRef = useRef()
 

@@ -5,7 +5,7 @@
 
 import { useEffect, useRef } from "react"
 import { LuX } from "react-icons/lu"
-import { addTodo } from "../libs/todo"
+import { useTodos } from "../hooks/useTodos"
 
 /**
  * 
@@ -15,6 +15,8 @@ import { addTodo } from "../libs/todo"
 function NewDialog({ ref }) {
   const inputRef = useRef()
 
+  const todos = useTodos()
+
   useEffect(() => {
     ref.current?.close()
   }, [ref])
@@ -22,7 +24,8 @@ function NewDialog({ ref }) {
   function handleSubmit(e) {
     e.preventDefault()
     const fd = new FormData(e.currentTarget)
-    addTodo(fd.get('todo'));
+
+    todos.add(fd.get('todo'))
 
     if (inputRef.current)
       inputRef.current.value = ""

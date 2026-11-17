@@ -1,4 +1,5 @@
 import { LuPlus } from "react-icons/lu"
+import Todo from "./components/Todo"
 
 function App() {
   return (
@@ -16,72 +17,24 @@ function App() {
           </time>
         </hgroup>
         <form className="mt-4">
-          <ul className="h-67 overflow-y-scroll flex flex-col gap-2 text-xs">
+          <ul className="h-67 overflow-y-auto flex flex-col gap-2 text-xs">
             <li>
-              <label className="flex items-center gap-2">
-                <span className="line-clamp-2 grow">Buy new sweatshirt Buy new sweatshirt Buy new sweatshirt</span>
-                <input type="checkbox" name="done" value="todo1" />
-              </label>
+              <Todo id={1} done={false} todo="Buy new sweatshirt" />
             </li>
             <li>
-              <label className="flex items-center gap-2">
-                <span className="line-clamp-2 grow">Buy new sweatshirt</span>
-                <input type="checkbox" name="done" value="todo1" />
-              </label>
+              <Todo id={2} done={false} todo="Buy new sweatshirt" />
             </li>
             <li>
-              <label className="flex items-center gap-2">
-                <span className="line-clamp-2 grow">Buy new sweatshirt</span>
-                <input type="checkbox" name="done" value="todo1" />
-              </label>
+              <Todo id={3} done={false} todo="Buy new sweatshirt" />
             </li>
             <li>
-              <label className="flex items-center gap-2">
-                <span className="line-clamp-2 grow">Buy new sweatshirt</span>
-                <input type="checkbox" name="done" value="todo1" />
-              </label>
+              <Todo id={4} done={false} todo="Buy new sweatshirt" />
             </li>
             <li>
-              <label className="flex items-center gap-2">
-                <span className="line-clamp-2 grow">Buy new sweatshirt</span>
-                <input type="checkbox" name="done" value="todo1" />
-              </label>
+              <Todo id={5} done={false} todo="Buy new sweatshirt" />
             </li>
             <li>
-              <label className="flex items-center gap-2">
-                <span className="line-clamp-2 grow">Buy new sweatshirt</span>
-                <input type="checkbox" name="done" value="todo1" />
-              </label>
-            </li>
-            <li>
-              <label className="flex items-center gap-2">
-                <span className="line-clamp-2 grow">Buy new sweatshirt</span>
-                <input type="checkbox" name="done" value="todo1" />
-              </label>
-            </li>
-            <li>
-              <label className="flex items-center gap-2">
-                <span className="line-clamp-2 grow">Buy new sweatshirt</span>
-                <input type="checkbox" name="done" value="todo1" />
-              </label>
-            </li>
-            <li>
-              <label className="flex items-center gap-2">
-                <span className="line-clamp-2 grow">Buy new sweatshirt</span>
-                <input type="checkbox" name="done" value="todo1" />
-              </label>
-            </li>
-            <li>
-              <label className="flex items-center gap-2">
-                <span className="line-clamp-2 grow">Buy new sweatshirt</span>
-                <input type="checkbox" name="done" value="todo1" />
-              </label>
-            </li>
-            <li>
-              <label className="flex items-center gap-2">
-                <span className="line-clamp-2 grow">Buy new sweatshirt</span>
-                <input type="checkbox" name="done" value="todo1" />
-              </label>
+              <Todo id={6} done={false} todo="Buy new sweatshirt" />
             </li>
           </ul>
         </form>

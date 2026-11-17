@@ -12,5 +12,5 @@
   --color-on-surface-low: var(--color-zinc-500);
   --color-on-surface-high: var(--color-zinc-900);
 
-  --color-surface-container: var(--color-zinc-200);
+  --color-surface-container: var(--color-zinc-100);
 }

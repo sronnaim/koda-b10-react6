@@ -9,12 +9,12 @@
  * @returns {ToDo[]}
  */
 export function getTodos() {
-  const data = localStorage.getItem('todos')
+  const data = window.localStorage.getItem('todos')
 
   if (!data)
     return []
 
-  return JSON.parse('data')
+  return JSON.parse(data)
 }
 
 /**
@@ -22,7 +22,8 @@ export function getTodos() {
  */
 export function saveTodo(todos) {
   const string = JSON.stringify(todos)
-  localStorage.setItem('todos', string)
+  window.localStorage.setItem('todos', string)
+  window.dispatchEvent(new Event('storage'))
 }
 
 /**

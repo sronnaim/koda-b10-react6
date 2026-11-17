@@ -1,10 +1,10 @@
-/**
- * @typedef {ToDo} TodoProps
- */
-
-import { useRef, useState } from "react"
+import { useRef } from "react"
 import { LuCircle, LuCircleCheck, LuTrash } from "react-icons/lu"
 import { deleteTodoById, updateStatus } from "../libs/todo"
+
+/**
+ * @typedef {import("../libs/todo").ToDo} TodoProps
+ */
 
 /**
  * 
@@ -12,29 +12,23 @@ import { deleteTodoById, updateStatus } from "../libs/todo"
  * @returns 
  */
 function Todo(props) {
-  const [checked, setChecked] = useState(false)
-
   const inputRef = useRef()
 
-  function handleClick() {
+  function handleClick(e) {
     if (!inputRef.current)
       return
 
-    updateStatus(inputRef.current.value, inputRef.current.checked)
-    setChecked(inputRef.current.checked)
+    updateStatus(inputRef.current.value, e.currentTarget.checked)
   }
 
   function handleDelete() {
-    if (!inputRef.current)
-      return
-
-    deleteTodoById(inputRef.current.value)
+    deleteTodoById(props.id)
   }
 
   return (
     <label className="flex items-center gap-2">
-      <span className={`line-clamp-2 grow ${checked && 'text-on-surface-low line-through'}`}>{props.todo}</span>
-      {checked ? <LuCircleCheck className="text-primary" /> : <LuCircle />}
+      <span className={`line-clamp-2 grow ${props.done && 'text-on-surface-low line-through'}`}>{props.todo}</span>
+      {props.done ? <LuCircleCheck className="text-primary" /> : <LuCircle />}
       <input ref={inputRef} type="checkbox" name="done" value={props.id} className="hidden" onClick={handleClick} />
       <button type="button" onClick={handleDelete}>
         <LuTrash />

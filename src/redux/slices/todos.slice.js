@@ -10,11 +10,16 @@ import { createSlice } from '@reduxjs/toolkit'
  * @param {{ payload: string }} action 
  */
 function rAddtask(prev, { payload: todo }) {
-  return [...prev, {
+  const newTodo = {
     id: window.crypto.randomUUID(),
     todo: todo,
     done: false
-  }]
+  }
+
+  if (!Array.isArray(prev))
+    return [newTodo]
+
+  return [...prev, newTodo]
 }
 
 /**

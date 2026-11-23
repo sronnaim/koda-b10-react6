@@ -2,16 +2,15 @@ import { LuPlus } from "react-icons/lu"
 import Todo from "./components/Todo"
 import { useRef } from "react"
 import NewDialog from "./components/NewDialog"
-import { useTodos } from "./hooks/useTodos";
+import { useSelector } from "react-redux";
 
 const WEEKDAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
-
 function App() {
-  const todos = useTodos().getAll()
-
   const newDialogRef = useRef()
+
+  const todos = useSelector(state => state.todos)
 
   function handleNewTodo() {
     newDialogRef.current?.showModal()

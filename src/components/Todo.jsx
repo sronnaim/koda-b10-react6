@@ -1,6 +1,7 @@
 import { useRef } from "react"
 import { LuCircle, LuCircleCheck, LuTrash } from "react-icons/lu"
-import { useTodos } from "../hooks/useTodos";
+import { useDispatch } from "react-redux"
+import { editTask, removeTask } from "../redux/slices/todos.slice"
 
 /**
  * @typedef {import("../hooks/useTodos").ToDo} TodoProps
@@ -13,17 +14,18 @@ import { useTodos } from "../hooks/useTodos";
  */
 function Todo(props) {
   const inputRef = useRef()
-  const todos = useTodos();
+
+  const reduxDispatch = useDispatch()
 
   function handleClick(e) {
     if (!inputRef.current)
       return
 
-    todos.updateStatusById(inputRef.current.value, e.currentTarget.checked)
+    reduxDispatch(editTask({ id: props.id, done: e.currentTarget.checked }))
   }
 
   function handleDelete() {
-    todos.deleteById(props.id)
+    reduxDispatch(removeTask(props.id))
   }
 
   return (

@@ -5,7 +5,8 @@
 
 import { useEffect, useRef } from "react"
 import { LuX } from "react-icons/lu"
-import { useTodos } from "../hooks/useTodos"
+import { useDispatch } from "react-redux"
+import { addTask } from "../redux/slices/todos.slice"
 
 /**
  * 
@@ -15,7 +16,7 @@ import { useTodos } from "../hooks/useTodos"
 function NewDialog({ ref }) {
   const inputRef = useRef()
 
-  const todos = useTodos()
+  const reduxDispatch = useDispatch()
 
   useEffect(() => {
     ref.current?.close()
@@ -25,7 +26,7 @@ function NewDialog({ ref }) {
     e.preventDefault()
     const fd = new FormData(e.currentTarget)
 
-    todos.add(fd.get('todo'))
+    reduxDispatch(addTask(fd.get('todo')))
 
     if (inputRef.current)
       inputRef.current.value = ""
@@ -34,7 +35,7 @@ function NewDialog({ ref }) {
   }
 
   return (
-    <dialog ref={ref} className="justify-center gap-2 items-start absolute inset-0 w-5 h-5 z-100 [&::backdrop]:bg-on-surface-high/25  [&::backdrop]:backdrop-blur-lg open:flex open:flex-col w-fit bg-surface overflow-hidden rounded-2xl p-4 h-fit m-auto">
+    <dialog ref={ref} className="justify-center gap-2 items-start absolute inset-0 z-100 backdrop:bg-on-surface-high/25  backdrop:backdrop-blur-lg open:flex open:flex-col w-fit bg-surface overflow-hidden rounded-2xl p-4 h-fit m-auto">
       <span className="flex justify-between w-full">
         <label htmlFor="new-todo">What to do?</label>
         <button type="button" onClick={() => ref.current?.close()}>
